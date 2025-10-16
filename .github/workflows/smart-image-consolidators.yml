@@ -1,4 +1,4 @@
-name: Smart Image Consolidator
+name: Smart Image Consolidators
 
 on:
   pull_request:
@@ -46,10 +46,10 @@ jobs:
       - name: Install Go Dependencies
         run: go mod tidy
 
-      - name: Build Smart Image Consolidator
+      - name: Build Smart Image Consolidators
         run: go build -o consolidator .
 
-      - name: Run Smart Image Consolidator
+      - name: Run Smart Image Consolidators
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
         run: ./consolidator
