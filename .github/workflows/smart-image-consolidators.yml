@@ -36,13 +36,6 @@ jobs:
           sudo mv anchorectl /usr/local/bin/anchorectl
           anchorectl version
 
-      - name: Initialize Go Module (temporary)
-        run: |
-          if [ ! -f go.mod ]; then
-            go mod init smart-image-consolidator
-          fi
-          go mod tidy
-
       - name: Install Go Dependencies
         run: go mod tidy
 
