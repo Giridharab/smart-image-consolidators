@@ -46,9 +46,10 @@ jobs:
       - name: Install Go Dependencies
         run: go mod tidy
 
-      - name: Build and Run Smart Image Consolidator
+      - name: Build Smart Image Consolidator
+        run: go build -o consolidator .
+
+      - name: Run Smart Image Consolidator
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
-        run: |
-          go build -o consolidator main.go
-          ./consolidator
+        run: ./consolidator
