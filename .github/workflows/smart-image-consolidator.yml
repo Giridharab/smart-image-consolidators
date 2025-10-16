@@ -30,9 +30,10 @@ jobs:
 
       - name: Install AnchoreCTL
         run: |
-          curl -sSL https://github.com/anchore/anchore-cli/releases/download/v1.7.2/anchore-cli-linux-amd64 -o /usr/local/bin/anchore
-          chmod +x /usr/local/bin/anchore
-          anchore version
+          curl -sSfL https://anchorectl-releases.anchore.io/latest/anchorectl-linux-amd64 -o anchorectl
+          chmod +x anchorectl
+          sudo mv anchorectl /usr/local/bin/anchorectl
+          anchorectl version
 
       - name: Install Go Dependencies
         run: go mod tidy
