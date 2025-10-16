@@ -30,7 +30,8 @@ jobs:
 
       - name: Install AnchoreCTL
         run: |
-          curl -sSfL https://anchorectl-releases.anchore.io/latest/anchorectl-linux-amd64 -o anchorectl
+          curl -sSfL https://anchorectl-releases.anchore.io/anchorectl/v5.21.0/anchorectl_5.21.0_linux_amd64.tar.gz -o anchorectl.tar.gz
+          tar -xzf anchorectl.tar.gz
           chmod +x anchorectl
           sudo mv anchorectl /usr/local/bin/anchorectl
           anchorectl version
