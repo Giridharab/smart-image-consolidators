@@ -1,0 +1,5 @@
+CanonicalBases:
+  - Original: "python:3.11-slim"
+    Suggested: "artifactory.devhub-cloud.cisco.com/python:3.11-slim"
+  - Original: "node:20-alpine"
+    Suggested: "containers.cisco.com/sto-ccc-cloud9/node:20-alpine"
