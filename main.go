@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"path/filepath"
+
 	"smart-image-consolidator/analyzer"
 	"smart-image-consolidator/ci"
 	"smart-image-consolidator/metrics"
