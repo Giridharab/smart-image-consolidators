@@ -1,0 +1,57 @@
+name: Smart Image Consolidators
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  image-analysis:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: 1.24
+
+      - name: Set PR Environment Variables
+        run: |
+          echo "GITHUB_PR_NUMBER=${{ github.event.pull_request.number }}" >> $GITHUB_ENV
+          echo "GITHUB_REPOSITORY=${{ github.repository }}" >> $GITHUB_ENV
+          echo "COMMIT_SHA=${{ github.event.pull_request.head.sha }}" >> $GITHUB_ENV
+
+      - name: Check Docker & Buildx
+        run: |
+          docker --version
+          docker buildx version
+
+      - name: Install AnchoreCTL
+        run: |
+          curl -sSfL https://anchorectl-releases.anchore.io/anchorectl/v5.21.0/anchorectl_5.21.0_linux_amd64.tar.gz -o anchorectl.tar.gz
+          tar -xzf anchorectl.tar.gz
+          chmod +x anchorectl
+          sudo mv anchorectl /usr/local/bin/anchorectl
+          anchorectl version
+
+      - name: Install Go Dependencies
+        run: go mod tidy
+
+      - name: Install GitHub CLI
+        run: sudo apt-get update && sudo apt-get install -y gh
+
+      - name: Build Smart Image Consolidators
+        run: go build -o consolidator .
+
+      - name: Set PR Environment Variables
+        run: |
+          echo "GITHUB_PR_NUMBER=${{ github.event.pull_request.number }}" >> $GITHUB_ENV
+          echo "GITHUB_REPOSITORY=${{ github.repository }}" >> $GITHUB_ENV
+          echo "COMMIT_SHA=${{ github.event.pull_request.head.sha }}" >> $GITHUB_ENV
+
+      - name: Run Smart Image Consolidators
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+        run: ./consolidator
