@@ -1,14 +1,12 @@
 package metrics
 
 import (
-	"context"
-	"fmt"
-	"time"
-
-	"github.com/moby/moby/api/types"
+    "context"
+    "fmt"
+    "github.com/moby/moby/api/types"
     "github.com/moby/moby/api/types/container"
-	"github.com/docker/docker/client"
-	"github.com/moby/moby/client"
+    "github.com/moby/moby/client"
+    "time"
 )
 
 type PerfMetric struct {
