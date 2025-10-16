@@ -5,11 +5,11 @@ import (
 	"log"
 	"path/filepath"
 
-	"smart-image-consolidator/analyzer"
-	"smart-image-consolidator/ci"
-	"smart-image-consolidator/metrics"
-	"smart-image-consolidator/scanner"
-	"smart-image-consolidator/security"
+	"smart-image-consolidators/analyzer"
+	"smart-image-consolidators/ci"
+	"smart-image-consolidators/metrics"
+	"smart-image-consolidators/scanner"
+	"smart-image-consolidators/security"
 )
 
 func main() {
