@@ -46,8 +46,17 @@ jobs:
       - name: Install Go Dependencies
         run: go mod tidy
 
+      - name: Install GitHub CLI
+        run: sudo apt-get update && sudo apt-get install -y gh
+
       - name: Build Smart Image Consolidators
         run: go build -o consolidator .
+
+      - name: Set PR Environment Variables
+        run: |
+          echo "GITHUB_PR_NUMBER=${{ github.event.pull_request.number }}" >> $GITHUB_ENV
+          echo "GITHUB_REPOSITORY=${{ github.repository }}" >> $GITHUB_ENV
+          echo "COMMIT_SHA=${{ github.event.pull_request.head.sha }}" >> $GITHUB_ENV
 
       - name: Run Smart Image Consolidators
         env:
