@@ -1,6 +1,6 @@
 package analyzer
 
-import "smart-image-consolidator/configs"
+import "smart-image-consolidators/configs"
 
 func SuggestCanonicalBase(dockerfileContent string) string {
 	for _, canonical := range configs.CanonicalBases {
